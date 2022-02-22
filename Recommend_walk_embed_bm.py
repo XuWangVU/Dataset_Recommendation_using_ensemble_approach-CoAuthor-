@@ -20,11 +20,11 @@ all_args.add_argument("-bth", "--bm25_threshold", required=True,
 all_args.add_argument("-hp", "--hop", required=True,
                       help="Hop number for graph walk")
 all_args.add_argument("-sd", "--seed", required=True,
-                      help="Hop number for graph walk")
+                      help="Path to [seed file].txt")
 all_args.add_argument("-cd", "--candidate", required=True,
-                      help="Hop number for graph walk")
+                      help="Path to [candidate file].txt")
 all_args.add_argument("-gd", "--standard", required=True,
-                      help="Hop number for graph walk")
+                      help="Path to [standard file].hdt")
 all_args.add_argument("-d", "--dir", required=False, default=os.path.dirname(os.getcwd()),
                       help="Directory to read all needed files and to store all results. Default is directory of this python file")
 args = vars(all_args.parse_args())
