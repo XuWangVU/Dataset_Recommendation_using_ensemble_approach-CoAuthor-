@@ -28,6 +28,6 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 
 
 ## License
-This repository is licensed under
+This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 The Microsoft Academic Knowledge Graph, the linked data description files, and the ontology are licensed under the [Open Data Commons Attribution License (ODC-By) v1.0](https://opendatacommons.org/licenses/by/1-0/index.html).
