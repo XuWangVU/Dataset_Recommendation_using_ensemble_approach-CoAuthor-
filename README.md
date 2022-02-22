@@ -1,7 +1,7 @@
 # Dataset_Recommendation_using_ensembel_approach-CoAuthor-
 
 ## Introduction
-
+This repository is the required dataset and python implementation of paper "**Recommending Scientific Datasets Using Author Networks in Ensemble Methods**" with authors **Xu Wang**, **Frank van Harmelen** and **Zhisheng Huang**.
 
 ## Requirement before running experiment
 You should "pip" install followling library in your python evironment:
@@ -19,6 +19,7 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 - MAKG coauthor RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
 - MAKG paper/dataset title RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
 - MAKG paper/dataset abstract RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
+- MAKG pretrained author-entity embedding [download link](https://makg.org/dumps/2020-06-19/makg-embeddings-2020-06-19.tar.bz2)
 - Seed dataset/paper txt file one dataset per line
 - Candidate dataset/paper txt file one dataset per line
 - Gold standard link between seeds and candidates RDF/HDT file
@@ -26,3 +27,7 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 ## Sample experiment
 
 
+## License
+This repository is licensed under
+
+The Microsoft Academic Knowledge Graph, the linked data description files, and the ontology are licensed under the [Open Data Commons Attribution License (ODC-By) v1.0](https://opendatacommons.org/licenses/by/1-0/index.html).
