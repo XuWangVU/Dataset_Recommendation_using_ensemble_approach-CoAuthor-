@@ -26,7 +26,8 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 
 ## Sample experiment
 41 [seed datasets](./seeds_sample.txt) and 116 [candidate datasets](./cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
-'python '
+
+`python`
 
 ## License
 This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
