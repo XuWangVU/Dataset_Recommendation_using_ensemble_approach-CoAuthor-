@@ -4,7 +4,7 @@
 This repository is the required dataset and python implementation of paper "**Recommending Scientific Datasets Using Author Networks in Ensemble Methods**" with authors **Xu Wang**, **Frank van Harmelen** and **Zhisheng Huang**.
 
 ## Requirement before running experiment
-You should "pip" install followling library in your python evironment:
+Make sure your python version >= 3.6. You should "pip" install followling library in your python evironment:
 - [pybind11](https://pybind11.readthedocs.io/en/stable/index.html#)
 - [pyHDT](https://callidon.github.io/pyHDT/) or [rdflib-hdt](https://github.com/RDFLib/rdflib-hdt)
 - [numpy](https://numpy.org/)
