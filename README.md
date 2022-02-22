@@ -27,7 +27,7 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 ## Sample experiment
 41 [seed datasets](./seeds_sample.txt) and 116 [candidate datasets](./cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
 
-`python`
+`python Recommend_walk_embed_bm.py -th [threshold of embedding similarity] -bth [threshold of bm25] -hp [hop number of graph walk] -sd [path_to_seed] -cd [path_to_candidate] -gd [path_to_standard.hdt] -d [path_to_all_files]`
 
 ## License
 This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
