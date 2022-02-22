@@ -19,11 +19,23 @@ all_args.add_argument("-bth", "--bm25_threshold", required=True,
                       help="Threshold for BM25 ranking")
 all_args.add_argument("-hp", "--hop", required=True,
                       help="Hop number for graph walk")
+all_args.add_argument("-sd", "--seed", required=True,
+                      help="Hop number for graph walk")
+all_args.add_argument("-cd", "--candidate", required=True,
+                      help="Hop number for graph walk")
+all_args.add_argument("-gd", "--standard", required=True,
+                      help="Hop number for graph walk")
 all_args.add_argument("-d", "--dir", required=False, default=os.path.dirname(os.getcwd()),
                       help="Directory to read all needed files and to store all results. Default is directory of this python file")
 args = vars(all_args.parse_args())
 if not os.path.isdir(args['dir']):
     raise ValueError("Please input correct directory path. -d/--dir [path_to_dir]")
+if not os.path.isfile(args['seed']):
+    raise ValueError("Please input correct path for seed file")
+if not os.path.isfile(args['candidate']):
+    raise ValueError("Please input correct path for candidate file")
+if not os.path.isfile(args['standard']):
+    raise ValueError("Please input correct path for standard file")
 if float(args['threshold']) < 0.0 or float(args['threshold']) > 1.0:
     raise ValueError("Please input valid threshold for similarity between entity(author) embedding")
 if int(args['hop']) < 0 or int(args['hop']) > 3:
@@ -275,11 +287,11 @@ if __name__ == '__main__':
     dir = str(args['out'])
     seed_percent = 1.0
     bm_t = int(args['bm25_threshold'])
-    seed_path = dir + "/seeds.txt"
-    cand_path = dir + "/cands.txt"
-    standard_path = dir + "/StandardSchLink.hdt"
+    seed_path = dir + str(args['seed'])
+    cand_path = dir + str(args['candidate'])
+    standard_path = dir + str(args['standard'])
     vec_path = dir + "/mag_authors_2020_ComplEx_entity.npy"
-    vec_dict_path = dir + "/author_entities.txt"
+    vec_dict_path = dir + "/authors_entities.dict"
     title_path = dir + "/Paper.hdt"
     des_path = dir + "/PaperAbs.hdt"
     coauthor_hdt = HDTDocument(dir + "/PaperAuthorAffiliations.hdt")
