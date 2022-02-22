@@ -25,7 +25,7 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 - Gold standard link between seeds and candidates RDF/HDT file
 
 ## Sample experiment
-
+41 [seed datasets](../seeds_sample.txt) and 116 [candidate datasets](../cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
 
 ## License
 This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
