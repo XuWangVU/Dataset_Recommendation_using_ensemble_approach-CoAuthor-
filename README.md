@@ -27,7 +27,13 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 ## Sample experiment
 41 [seed datasets](./seeds_sample.txt) and 116 [candidate datasets](./cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
 
-`python Recommend_walk_embed_bm.py -th [threshold of embedding similarity] -bth [threshold of bm25] -hp [hop number of graph walk] -sd [path_to_seed] -cd [path_to_candidate] -gd [path_to_standard.hdt] -d [path_to_all_files]`
+`python Recommend_walk_embed_bm.py -th [threshold of embedding similarity] -bth [threshold of bm25] -hp [hop number of graph walk] -sd [path_to_seed] -cd [path_to_candidate] -gd [path_to_standard.hdt] -d [path_to_dir_of_all_datasets]`
+
+After running python file, it will return result file in directory with format per line:
+
+`seed_dataset_id[Tab Separated]Correct_Count[Tab Separated]Standard_Count[Tab Separated]Recommended_Count[Tab Separated]Recall[Tab Separated]Precision`
+
+where `Standard_Count` is the number of standard linked datasets for seed dataset; `Recommended_Count` is the number of datasets returned by recommendation alogrithm for seed dataset; `Correct_Count` is the number of intersection between standard linked datasets and datasets returned by recommendation alogrithm for seed dataset; `Recall` is `Correct_Count` divided by `Standard_Count`; `Precision` is `Correct_Count` divided by `Recommended_Count`.
 
 ## License
 This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
