@@ -15,7 +15,7 @@ Make sure your python version >= 3.6. You should "pip" install followling librar
 
 ## Dataset
 
-The dataset you needed for our ensembel datset recommendation algorithm:
+The dataset you needed for our ensemble datset recommendation algorithm:
 - MAKG coauthor RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
 - MAKG paper/dataset title RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
 - MAKG paper/dataset abstract RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
