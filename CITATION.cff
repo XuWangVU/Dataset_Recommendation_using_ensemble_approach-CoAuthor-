@@ -1,0 +1,17 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Dataset_Recommendation_using_ensembel_approach-CoAuthor
+message: >-
+  Python implementation of paper "Recommending
+  Scientiﬁc Datasets Using Author Networks in
+  Ensemble Methods"
+type: software
+authors:
+  - given-names: Xu
+    family-names: Wang
+    email: xu.wang@vu.nl
+    affiliation: Vrije Universiteit Amsterdam
+    orcid: 'https://orcid.org/0000-0002-7585-759X'
