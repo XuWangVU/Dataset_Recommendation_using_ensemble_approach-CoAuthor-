@@ -43,4 +43,4 @@ The Microsoft Academic Knowledge Graph, the linked data description files, and t
 
 ## Citation of Data
 
-Wang, Xu, 2022, "Data For "Recommending Scientiﬁc Datasets Using Author Networks in Ensemble Methods"", https://doi.org/10.34894/W6C7P7, DataverseNL.
+Wang, Xu, 2022, "Data For "Recommending Scientiﬁc Datasets Using Author Networks in Ensemble Methods"", https://doi.org/10.34894/W6C7P7, DataverseNL, V1
