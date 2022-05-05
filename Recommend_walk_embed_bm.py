@@ -44,7 +44,7 @@ if int(args['bm25_threshold']) < 0:
     raise ValueError("Please input threshold for BM25 ranking >0")
 
 
-def graphwalk(G: nx.Graph, hop: int, seed, cand_list):
+def graphwalk(G: nx.Graph, hop: int, seed, cand_list): # graph walk implementation
     walk_authors = set()
     if G.has_node(seed.replace("https://makg.org/entity/", "")):
         temp_set = set(
@@ -54,7 +54,7 @@ def graphwalk(G: nx.Graph, hop: int, seed, cand_list):
     return walk_authors
 
 
-def read_seed_dataset(path):
+def read_seed_dataset(path): # load all the seed datasets from file
     seed_datasets = set()
     with open(path) as seed_file:
         for line in seed_file:
@@ -62,7 +62,7 @@ def read_seed_dataset(path):
     return seed_datasets
 
 
-def read_candidate_dataset(path):
+def read_candidate_dataset(path): # load all the candidate datasets from file 
     dataset_list = set()
     with open(path) as seed_file:
         for line in seed_file:
@@ -70,7 +70,7 @@ def read_candidate_dataset(path):
     return dataset_list
 
 
-def reduce_candidates(seeds, candidates, standard_hdt):
+def reduce_candidates(seeds, candidates, standard_hdt): # if use large seed/candidates input file and wanna use not all seed/candidate for experiemnt, this function will reduce the size of seed/candidate set 
     new_cands = set()
     for seed in seeds:
         (triples, cardinality) = standard_hdt.search_triples_bytes(seed, "", "")
@@ -81,7 +81,7 @@ def reduce_candidates(seeds, candidates, standard_hdt):
     return new_cands
 
 
-def get_authors_based_on_datasets(dataset_list, dataset_author_hdt):
+def get_authors_based_on_datasets(dataset_list, dataset_author_hdt): # get the author list of one dataset list
     author_list = set()
     for dataset in dataset_list:
         (triples, cardinality) = dataset_author_hdt.search_triples_bytes("", "", dataset)
@@ -91,7 +91,7 @@ def get_authors_based_on_datasets(dataset_list, dataset_author_hdt):
     return author_list
 
 
-def get_seed_author(seed_dataset, coauthor_hdt):
+def get_seed_author(seed_dataset, coauthor_hdt): # get the authors of seed datset (or one dataset)
     seed_authors = set()
     (triples, cardinality) = coauthor_hdt.search_triples_bytes("", "", seed_dataset)
     for subj, pred, obj in triples:
@@ -100,11 +100,11 @@ def get_seed_author(seed_dataset, coauthor_hdt):
     return seed_authors
 
 
-def cosine_np(a, b):
+def cosine_np(a, b): # cosine similarity function
     return dot(a, b) / (norm(a) * norm(b))
 
 
-def clean_candidate_with_ent_embed(seed_author, candidate_set, ent_embed, threshold=0.0):
+def clean_candidate_with_ent_embed(seed_author, candidate_set, ent_embed, threshold=0.0): # remove the author which cannot meet author embedding similarity threshold from author set
     new_set = []
     seed_vec = ent_embed[seed_author]
     for candidate in candidate_set:
@@ -115,7 +115,7 @@ def clean_candidate_with_ent_embed(seed_author, candidate_set, ent_embed, thresh
     return new_set
 
 
-def get_standard(dataset, standard_hdt):
+def get_standard(dataset, standard_hdt): # get standard linked dataset set for given seed dataset
     standards = set()
     (triples, cardinality) = standard_hdt.search_triples_bytes(dataset, "", "")
     for subj, pred, obj in triples:
@@ -124,7 +124,7 @@ def get_standard(dataset, standard_hdt):
     return standards
 
 
-def read_vec_dict(path):
+def read_vec_dict(path): # read dictionary of author entity vector for quick index 
     vec_dict = {}
     with open(path) as rfile:
         for line in rfile:
@@ -135,14 +135,14 @@ def read_vec_dict(path):
     return vec_dict
 
 
-def authors_to_embed_dict(author_list, vec_dict, fp):
+def authors_to_embed_dict(author_list, vec_dict, fp): # transfer a set of author into index-set of author vectors
     embed_dict = {}
     for author in author_list:
         embed_dict[author] = fp[vec_dict[author.replace("https://makg.org/entity/", "")]]
     return embed_dict
 
 
-def authors_to_datasets(author_list, dataset_author_hdt):
+def authors_to_datasets(author_list, dataset_author_hdt): # find datset set based on given author list/set
     dataset_list = set()
     for author in author_list:
         (triples, cardinality) = dataset_author_hdt.search_triples_bytes(author, "", "")
@@ -152,7 +152,7 @@ def authors_to_datasets(author_list, dataset_author_hdt):
     return dataset_list
 
 
-def get_title(dataset, title_hdt):
+def get_title(dataset, title_hdt): # get title of dataset from HDT file
     title = ""
     (triples, cardinality) = title_hdt.search_triples_bytes(dataset, "", "")
     for subj, pred, obj in triples:
@@ -162,7 +162,7 @@ def get_title(dataset, title_hdt):
     return title
 
 
-def get_abs(dataset, abs_hdt):
+def get_abs(dataset, abs_hdt): # get abstract/description of dataset from HDT file
     title = ""
     (triples, cardinality) = abs_hdt.search_triples_bytes(dataset, "", "")
     for subj, pred, obj in triples:
@@ -172,32 +172,20 @@ def get_abs(dataset, abs_hdt):
     return title
 
 
-def get_datasets_title_desc_with_dict(dataset_list, title_hdt, abs_hdt):
+def get_datasets_title_desc_with_dict(dataset_list, title_hdt, abs_hdt): # prework for get title and abstract/description of dataset
     dataset_dict = {}
     for dataset in dataset_list:
         dataset_dict[dataset] = get_title(dataset, title_hdt) + " " + get_abs(dataset, abs_hdt)
     return dict(enumerate(list(dataset_dict.keys()))), list(dataset_dict.values())
 
 
-def get_datasets_title_desc(dataset_list, title_hdt, abs_hdt):
+def get_datasets_title_desc(dataset_list, title_hdt, abs_hdt): # combined function to get title and abstract/description of dataset
     dataset_dict = {}
     for dataset in dataset_list:
         dataset_dict[dataset] = get_title(dataset, title_hdt) + " " + get_abs(dataset, abs_hdt)
     return dataset_dict
 
-
-def get_ciataion_embed_dict(dataset_list, vec_path):
-    dataset_vec = {}
-    vec_file = open(vec_path)
-    for line in vec_file:
-        sline = line.split()
-        id = sline[0].replace("<", "").replace(">", "")
-        if id in dataset_list:
-            dataset_vec[id] = [float(a) for a in sline[1:50]]
-    return dataset_vec
-
-
-def loop_build_graph(G: nx.Graph, step: int, node, coauthor_hdt):
+def loop_build_graph(G: nx.Graph, step: int, node, coauthor_hdt): # prebuild the custom co-author network for all the authors from seed and candidate datasets. To reduce time consuming of graph walk
     if step % 2 == 0:
         (triples, cardinality) = coauthor_hdt.search_triples_bytes(
             node, "", "")
@@ -219,33 +207,35 @@ def loop_build_graph(G: nx.Graph, step: int, node, coauthor_hdt):
 
 
 def step(i, seed, standard_hdt, coauthor_hdt, Graph, candidate_author, all_author, threshold, result_w, result_w1,
-         result_w2, seed_bm, bm25_index, cand_bm_dict, bm_t):
-    walk_dataset = set()
-    walk_dataset_embed = set()
-    standards = get_standard(seed, standard_hdt)
-    seed_authors = get_seed_author(seed, coauthor_hdt)
-    assert len(seed_authors) > 0
+         result_w2, seed_bm, bm25_index, cand_bm_dict, bm_t): # recommendatoin algorithem implementation
+    walk_dataset = set() # empty output dataset set without embedding
+    walk_dataset_embed = set() # empty output dataset set with embedding
+    standards = get_standard(seed, standard_hdt) # get the standards linked datasets for given seed dataset
+    seed_authors = get_seed_author(seed, coauthor_hdt) # get all the authors of seed dataset (author should be findable in MAKG co-author network)
+    assert len(seed_authors) > 0 # make sure seed dataset contain at least one author
     for seed_author in seed_authors:
-        walk_author = graphwalk(Graph, i, seed_author, candidate_author)
-        walk_author = set([element for element in walk_author if element != None])
-        walk_author = walk_author.intersection(candidate_author)
-        walk_dataset.update(authors_to_datasets(walk_author, coauthor_hdt))
-        walk_author = clean_candidate_with_ent_embed(seed_author, walk_author, all_author, threshold)
-        walk_dataset_embed.update(authors_to_datasets(walk_author, coauthor_hdt))
-    G = float(len(standards))
-    correct_dataset = standards.intersection(walk_dataset)
-    T = float(len(correct_dataset))
-    N = float(len(walk_dataset))
+        walk_author = graphwalk(Graph, i, seed_author, candidate_author) # for each author of seed dataset, find hop-i authors
+        walk_author = set([element for element in walk_author if element != None]) # make sure there is no None author
+        walk_author = walk_author.intersection(candidate_author) # hop-i authors should be founded in the author set of all candidate datasets (reduce following useless computation)
+        walk_dataset.update(authors_to_datasets(walk_author, coauthor_hdt)) # use hop-i authors to find datasets, and put these datasets into output dataset set without embedding
+        walk_author = clean_candidate_with_ent_embed(seed_author, walk_author, all_author, threshold) # remove hop-i authors which cannot meet author entity embedding similarity threshold
+        walk_dataset_embed.update(authors_to_datasets(walk_author, coauthor_hdt)) # use hop-i authors which meet embedding similarity threshold to find datasets and put into output dataset set with embedding
+    # only graph walk method evaluation
+    G = float(len(standards)) # size of gold standard linked datasets
+    correct_dataset = standards.intersection(walk_dataset) # True positive set = standard set intersect with recommended dataset set
+    T = float(len(correct_dataset)) # size of True positive set
+    N = float(len(walk_dataset)) # size of graph walk set
     precision = 0.0
     if N != 0.0:
-        precision = T / N
+        precision = T / N #precision
     recall = 0.0
     if G != 0.0:
-        recall = T / G
+        recall = T / G #recall
     result_w.write(
         seed + "\t" + str(T) + "\t" + str(G) + "\t" + str(N) + "\t" + str(recall) + "\t" + str(
             precision) + "\r\n")
     result_w.flush()
+    # graph walk + author embedding similarity
     correct_dataset = standards.intersection(walk_dataset_embed)
     T = float(len(correct_dataset))
     N = float(len(walk_dataset_embed))
@@ -259,14 +249,15 @@ def step(i, seed, standard_hdt, coauthor_hdt, Graph, candidate_author, all_autho
         seed + "\t" + str(T) + "\t" + str(G) + "\t" + str(N) + "\t" + str(recall) + "\t" + str(
             precision) + "\r\n")
     result_w1.flush()
+    # graph walk + author embeeding similarity + BM25
     search_tokens = preprocess_string(seed_bm[seed])
-    scores = bm25_index.get_scores(search_tokens)
+    scores = bm25_index.get_scores(search_tokens) #create bm25 program with descriptive metadata of seed dataset as query
     bm_results = {}
     for i in range(len(cand_bm_dict)):
-        bm_results[cand_bm_dict[i]] = scores[i]
-    bm_results = dict(sorted(bm_results.items(), key=lambda x: x[1], reverse=True))
+        bm_results[cand_bm_dict[i]] = scores[i] # for each recommended dataset, use BM25 program to calculate score between seed dataset and recommended dataset based on descriptive metadata
+    bm_results = dict(sorted(bm_results.items(), key=lambda x: x[1], reverse=True)) # sort recommended dataset set with BM25 score
     bm_results = list(bm_results.keys())
-    bm_results = set(bm_results[:(bm_t * int(len(standards)))])
+    bm_results = set(bm_results[:(bm_t * int(len(standards)))]) # use BM25 threshold to remove recommended dataset which cannot meet threshold
     bm_results = bm_results.intersection(walk_dataset_embed)
     N = float(len(bm_results))
     correct_dataset = standards.intersection(bm_results)
@@ -290,6 +281,7 @@ if __name__ == '__main__':
     seed_path = dir + str(args['seed'])
     cand_path = dir + str(args['candidate'])
     standard_path = dir + str(args['standard'])
+    #Read all needed data:
     vec_path = dir + "/mag_authors_2020_ComplEx_entity.npy"
     vec_dict_path = dir + "/authors_entities.dict"
     title_path = dir + "/Paper.hdt"

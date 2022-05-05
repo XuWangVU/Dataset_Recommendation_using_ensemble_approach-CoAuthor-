@@ -24,6 +24,18 @@ The dataset you needed for our ensembel datset recommendation algorithm:
 - Candidate dataset/paper txt file one dataset per line
 - Gold standard link between seeds and candidates RDF/HDT file
 
+## Python Implementation of Dataset Recommendation with Co-author network in ensemble methods
+
+The algorithm in paper is implemented in [Recommend_walk_embed_bm.py](./Recommend_walk_embed_bm.py):
+- Graph walk implementation 
+    - `graphwalk` function in line 47
+    - line 217-220 of `step` function
+- Author entity embedding similarity
+    - `clean_candidate_with_ent_embed` in line 107
+    - line 221-222 of `step` function
+- BM25
+    - line 253-260 of `step` function
+
 ## Sample experiment
 41 [seed datasets](./seeds_sample.txt) and 116 [candidate datasets](./cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
 
