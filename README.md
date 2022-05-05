@@ -13,6 +13,8 @@ Make sure your python version >= 3.6. You should "pip" install followling librar
 - [rank_bm25](https://github.com/dorianbrown/rank_bm25)
 - [networkx](https://networkx.org/)
 
+Or simply use `pip install -r requirements.txt` to install all needed library.
+
 ## Dataset
 
 The dataset you needed for our ensembel datset recommendation algorithm:
