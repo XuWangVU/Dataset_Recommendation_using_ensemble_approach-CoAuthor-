@@ -1,0 +1,7 @@
+pybind11
+hdt
+numpy
+gensim
+tqdm
+rank_bm25
+networkx

@@ -36,6 +36,27 @@ The algorithm in paper is implemented in [Recommend_walk_embed_bm.py](./Recommen
 - BM25
     - line 253-260 of `step` function
 
+## Usage
+
+```
+usage: Recommend_walk_embed_bm.py [-h] -th THRESHOLD -bth BM25_THRESHOLD -hp HOP -sd SEED -cd CANDIDATE -gd STANDARD [-d DIR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -th THRESHOLD, --threshold THRESHOLD
+                        Threshold for similarity between entity(author) embedding
+  -bth BM25_THRESHOLD, --bm25_threshold BM25_THRESHOLD
+                        Threshold for BM25 ranking
+  -hp HOP, --hop HOP    Hop number for graph walk
+  -sd SEED, --seed SEED
+                        Path to [seed file].txt
+  -cd CANDIDATE, --candidate CANDIDATE
+                        Path to [candidate file].txt
+  -gd STANDARD, --standard STANDARD
+                        Path to [standard file].hdt
+  -d DIR, --dir DIR     Directory to read all needed files and to store all results. Default is directory of this python file
+```
+
 ## Sample experiment
 41 [seed datasets](./seeds_sample.txt) and 116 [candidate datasets](./cands_sample.txt), with 117 [gold standard link](Standard_sample.hdt).
 
