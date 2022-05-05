@@ -16,9 +16,9 @@ Make sure your python version >= 3.6. You should "pip" install followling librar
 ## Dataset
 
 The dataset you needed for our ensembel datset recommendation algorithm:
-- MAKG coauthor RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
-- MAKG paper/dataset title RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
-- MAKG paper/dataset abstract RDF/HDT file [download link](https://surfdrive.surf.nl/files/index.php/s/ibrwDJNem6fLUdk)
+- MAKG coauthor RDF/HDT file [download link](https://doi.org/10.34894/W6C7P7)
+- MAKG paper/dataset title RDF/HDT file [download link](https://doi.org/10.34894/W6C7P7)
+- MAKG paper/dataset abstract RDF/HDT file [download link](https://doi.org/10.34894/W6C7P7)
 - MAKG pretrained author-entity embedding [download link](https://makg.org/dumps/2020-06-19/makg-embeddings-2020-06-19.tar.bz2)
 - Seed dataset/paper txt file one dataset per line
 - Candidate dataset/paper txt file one dataset per line
@@ -39,3 +39,8 @@ where `Standard_Count` is the number of standard linked datasets for seed datase
 This repository is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 The Microsoft Academic Knowledge Graph, the linked data description files, and the ontology are licensed under the [Open Data Commons Attribution License (ODC-By) v1.0](https://opendatacommons.org/licenses/by/1-0/index.html).
+
+
+## Citation of Data
+
+Wang, Xu, 2022, "Data For "Recommending Scientiﬁc Datasets Using Author Networks in Ensemble Methods"", https://doi.org/10.34894/W6C7P7, DataverseNL.
